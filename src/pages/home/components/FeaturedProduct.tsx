@@ -39,9 +39,11 @@ const FeaturedProduct = () => {
             Our tried-and-true favorites that never go out of style. Pure,
             simple, and absolutely delicious.
           </p>
-          <button className=" inline-flex items-center text-sm mt-2 gap-x-2 py-1.5 px-3 bg-[#FFF4F8] font-custom italic border-2 border-[#3C072E] rounded-full ">
-            View all flavours
-          </button>
+          <div className="group">
+            <button className=" inline-flex items-center text-sm mt-2 gap-x-2 py-1.5 px-3 bg-[#FFF4F8] group-hover:bg-[#3C072E] group-hover:text-white font-custom italic border-2 border-[#3C072E] rounded-full ">
+              View all flavours
+            </button>
+          </div>
         </div>
       </div>
 
