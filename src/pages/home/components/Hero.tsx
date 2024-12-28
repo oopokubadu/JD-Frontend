@@ -1,6 +1,6 @@
-import React from 'react'
-import { FaCircleArrowRight } from 'react-icons/fa6';
-import { Juice } from '../../../assets';
+import React from "react";
+import { FaCircleArrowRight } from "react-icons/fa6";
+import { Juice } from "../../../assets";
 
 const Hero = () => {
   return (
@@ -9,12 +9,14 @@ const Hero = () => {
         <div className="max-w-xl mb-8 mx-auto text-center">
           <h2 className="md:relative mb-6 text-5xl font-custom font-normal leading-none tracking-tight text-[#3C072E] sm:text-6xl lg:text-7xl md:mx-auto">
             Nature's Party in a Bottle!{" "}
-            <button className=" md:absolute md:bottom-2 md:right-8 inline-flex items-center gap-x-2 py-1.5 px-3 bg-[#FFF4F8] border-2 border-[#3C072E] rounded-full ">
-              <p className=" text-[#3C072E] font-custom italic text-sm">
-                Find&nbsp;&nbsp;&nbsp;&nbsp;your&nbsp;&nbsp;&nbsp;&nbsp;flavor!
-              </p>
-              <FaCircleArrowRight className="text-2xl" />
-            </button>
+            <div className="group">
+              <button className=" md:absolute md:bottom-2 md:right-8 inline-flex items-center gap-x-2 py-1.5 px-3 bg-[#FFF4F8] group-hover:bg-[#3C072E] border-2 border-[#3C072E] rounded-full ">
+                <p className=" text-[#3C072E] font-custom italic text-sm group-hover:text-white">
+                  Find&nbsp;&nbsp;&nbsp;&nbsp;your&nbsp;&nbsp;&nbsp;&nbsp;flavor!
+                </p>
+                <FaCircleArrowRight className="text-2xl group-hover:text-white" />
+              </button>
+            </div>
           </h2>
           <p className=" lg:max-w-lg text-base text-[#3C072E] font-semibold md:text-lg">
             Family-crafted juice blends that make your taste buds dance and your
@@ -45,6 +47,6 @@ const Hero = () => {
       <hr className="border-[1.5px] border-[#FE9FD9]" />
     </div>
   );
-}
+};
 
-export default Hero
+export default Hero;
