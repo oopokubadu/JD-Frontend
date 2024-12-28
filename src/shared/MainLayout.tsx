@@ -6,7 +6,7 @@ const MainLayout = () => {
   return (
     <div className="bg-[#FFFAFE]">
       <Navbar />
-      <div className="max-w-[85rem] mx-auto pt-20 px-6 lg:px-8 ">
+      <div className="max-w-[85rem] relative isolate mx-auto pt-20 px-6 lg:px-8 ">
         <Outlet />
       </div>
       <Footer />
