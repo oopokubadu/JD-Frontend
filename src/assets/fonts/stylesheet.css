@@ -1,0 +1,72 @@
+@font-face {
+    font-family: 'CooperBlkBT';
+    src: url('CooperBlkBT-Regular.woff2') format('woff2'),
+        url('CooperBlkBT-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'CooperLtBT';
+    src: url('CooperLtBT-Bold.woff2') format('woff2'),
+        url('CooperLtBT-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'CooperBlkBT';
+    src: url('CooperBlkBT-Italic.woff2') format('woff2'),
+        url('CooperBlkBT-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'CooperMdBT';
+    src: url('CooperMdBT-Regular.woff2') format('woff2'),
+        url('CooperMdBT-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'CooperLtBT';
+    src: url('CooperLtBT-Italic.woff2') format('woff2'),
+        url('CooperLtBT-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'CooperMdBT';
+    src: url('CooperMdBT-Italic.woff2') format('woff2'),
+        url('CooperMdBT-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'CooperLtBT';
+    src: url('CooperLtBT-Regular.woff2') format('woff2'),
+        url('CooperLtBT-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'CooperLtBT';
+    src: url('CooperLtBT-BoldItalic.woff2') format('woff2'),
+        url('CooperLtBT-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+

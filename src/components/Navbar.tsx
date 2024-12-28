@@ -36,7 +36,7 @@ const Navbar = () => {
               <HiMiniBars3 aria-hidden="true" className="size-6" />
             </button>
           </div>
-          <div className="hidden lg:flex lg:gap-x-12">
+          <div className="hidden lg:flex lg:gap-x-6">
             {navigation.map((item) => (
               <NavLink
                 key={item.name}
@@ -60,7 +60,7 @@ const Navbar = () => {
             >
               Sign in
             </a>
-            <button className="rounded-full bg-[#3C072E] p-3 text-sm  text-white italic ">
+            <button className="rounded-full font-custom font-light bg-[#3C072E] p-3 text-sm  text-white italic ">
               Sign up
             </button>
           </div>

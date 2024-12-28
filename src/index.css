@@ -5,3 +5,78 @@
 * {
   font-family: "Inter", sans-serif;
 }
+
+@import url('./assets/fonts/stylesheet.css');
+
+
+/* @font-face {
+  font-family: 'CooperBlkBT';
+  src: url('./assets/fonts/CooperBlkBT-Regular.woff2') format('woff2'),
+    url('./assets/fonts/CooperBlkBT-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CooperLtBT';
+  src: url('./assets/fonts/CooperLtBT-Bold.woff2') format('woff2'),
+    url('./assets/fonts/CooperLtBT-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CooperBlkBT';
+  src: url('./assets/fonts/CooperBlkBT-Italic.woff2') format('woff2'),
+    url('./assets/fonts/CooperBlkBT-Italic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CooperMdBT';
+  src: url('./assets/fonts/CooperMdBT-Regular.woff2') format('woff2'),
+    url('./assets/fonts/CooperMdBT-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CooperLtBT';
+  src: url('./assets/fonts/CooperLtBT-Italic.woff2') format('woff2'),
+    url('./assets/fonts/CooperLtBT-Italic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CooperMdBT';
+  src: url('./assets/fonts/CooperMdBT-Italic.woff2') format('woff2'),
+    url('./assets/fonts/CooperMdBT-Italic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CooperLtBT';
+  src: url('./assets/fonts/CooperLtBT-Regular.woff2') format('woff2'),
+    url('./assets/fonts/CooperLtBT-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CooperLtBT';
+  src: url('./assets/fonts/CooperLtBT-BoldItalic.woff2') format('woff2'),
+    url('./assets/fonts/CooperLtBT-BoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+} */
