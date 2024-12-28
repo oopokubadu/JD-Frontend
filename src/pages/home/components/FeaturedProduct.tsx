@@ -85,6 +85,9 @@ const FeaturedProduct = () => {
             1440: {
               slidesPerView: 4,
             },
+            1920: {
+              slidesPerView: 5,
+            },
           }}
           className="mySwiper"
         >
