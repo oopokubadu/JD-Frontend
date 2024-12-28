@@ -1,6 +1,8 @@
 import React from "react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { FaStar } from "react-icons/fa6";
+import { AddToCart } from "../../../assets";
 
 const FeaturedProduct = () => {
   const productData = [
@@ -43,7 +45,7 @@ const FeaturedProduct = () => {
         </div>
       </div>
 
-      <div className="mx-auto  gap-5 mt-12 justify-center  text-center sm:mt-16 ">
+      <div className="mx-auto mt-12 ">
         <Swiper
           data-aos="fade-up"
           data-aos-offset="200"
@@ -90,12 +92,17 @@ const FeaturedProduct = () => {
                 className="flex flex-col rounded-lg"
                 style={{ backgroundColor: `${data.bgcolor}` }}
               >
-                <div className="flex-shrink-0">
+                <div className="relative flex-shrink-0">
                   <img
                     className="object-contain mx-auto mix-blend-multiply"
                     src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/item-cards/10/product-1.png"
                     alt=""
                   />
+                  <div className="absolute right-3 top-3">
+                    <p className=" px-1.5 py-1 inline-flex gap-x-1 text-[8px] sm:text-xs font-bold tracking-wide text-[#3C072E] uppercase bg-white rounded-full">
+                      <FaStar className="text-[#F9BE36]" /> 4.3
+                    </p>
+                  </div>
                 </div>
                 <div className="flex flex-col items-center flex-1 p-3">
                   <button
@@ -103,6 +110,19 @@ const FeaturedProduct = () => {
                     className="inline-flex w-full items-center justify-center  py-2  text-lg italic font-custom font-bold text-[#3C072E] transition-all duration-200 bg-white rounded-md  focus:outline-none"
                   >
                     {data.name}
+                  </button>
+                </div>
+              </div>
+              <div className="flex mt-2 justify-between">
+                <div>
+                  <p className="text-xs text-[#3C072E] ">GHS</p>
+                  <p className="text-base font-custom text-[#3C072E] ">
+                    {data.price}
+                  </p>
+                </div>
+                <div>
+                  <button className=" inline-flex items-center text-sm  gap-x-2 py-1.5 px-3 bg-[#FFF4F8] border-2 border-[#3C072E] rounded-lg ">
+                    Add to cart <img src={AddToCart} alt="" />
                   </button>
                 </div>
               </div>
