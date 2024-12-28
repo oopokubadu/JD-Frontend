@@ -6,19 +6,19 @@ const Hero = () => {
   return (
     <div>
       <div className="flex flex-col items-center justify-center  pt-16 mx-auto">
-        <div className="max-w-xl mb-8 mx-auto text-center">
-          <h2 className="md:relative mb-6 text-5xl font-custom font-normal leading-none tracking-tight text-[#3C072E] sm:text-6xl lg:text-7xl md:mx-auto">
+        <div className="max-w-xl xl:max-w-3xl mb-8 mx-auto text-center">
+          <h2 className="md:relative mb-6 text-5xl font-custom  leading-none tracking-tight text-[#3C072E] sm:text-6xl lg:text-7xl xl:text-8xl md:mx-auto">
             Nature's Party in a Bottle!{" "}
             <div className="group">
-              <button className=" md:absolute md:bottom-2 md:right-8 inline-flex items-center gap-x-2 py-1.5 px-3 bg-[#FFF4F8] group-hover:bg-[#3C072E] border-2 border-[#3C072E] rounded-full ">
-                <p className=" text-[#3C072E] font-custom italic text-sm group-hover:text-white">
+              <button className="md:absolute md:bottom-2 xl:bottom-4 md:right-8 xl:right-20 inline-flex items-center gap-x-2 py-2 px-3 bg-[#FFF4F8] group-hover:bg-[#3C072E] border-2 border-[#3C072E] rounded-full ">
+                <p className=" text-[#3C072E] font-custom italic text-sm xl:text-base group-hover:text-white">
                   Find&nbsp;&nbsp;&nbsp;&nbsp;your&nbsp;&nbsp;&nbsp;&nbsp;flavor!
                 </p>
                 <FaCircleArrowRight className="text-2xl group-hover:text-white" />
               </button>
             </div>
           </h2>
-          <p className=" lg:max-w-lg text-base text-[#3C072E] font-semibold md:text-lg">
+          <p className=" lg:max-w-lg mx-auto text-center text-base text-[#3C072E] font-semibold md:text-lg xl:text-xl">
             Family-crafted juice blends that make your taste buds dance and your
             body <span className="font-custom italic">sing</span>
           </p>
