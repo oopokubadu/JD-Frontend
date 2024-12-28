@@ -2,7 +2,6 @@ import React from "react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FaStar } from "react-icons/fa6";
-import { AddToCart } from "../../../assets";
 
 const FeaturedProduct = () => {
   const productData = [
@@ -26,6 +25,11 @@ const FeaturedProduct = () => {
       name: "StarPine flavour",
       bgcolor: "#EDDCFF",
       price: "12.00",
+    },
+    {
+      name: "StarPine flavour",
+      bgcolor: "#F9BE36",
+      price: "17.00",
     },
   ];
   return (
