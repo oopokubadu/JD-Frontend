@@ -40,7 +40,7 @@ const Hero = () => {
 
         <img
           src={Juice}
-          className="w-full mx-auto md:w-auto md:max-w-sm lg:max-w-md xl:max-w-lg"
+          className="w-full mx-auto md:w-auto md:max-w-sm lg:max-w-md xl:max-w-lg 2xl:max-w-xl"
           alt=""
         />
       </div>
