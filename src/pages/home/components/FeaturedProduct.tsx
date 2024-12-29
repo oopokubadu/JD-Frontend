@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FaStar } from "react-icons/fa6";
 
@@ -66,10 +66,7 @@ const FeaturedProduct = () => {
             delay: 10000,
             disableOnInteraction: false,
           }}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Navigation, Pagination, Autoplay]}
+          modules={[Navigation, Autoplay]}
           breakpoints={{
             0: {
               slidesPerView: 1,

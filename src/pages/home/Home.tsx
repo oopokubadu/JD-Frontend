@@ -1,3 +1,4 @@
+import { Modal } from "../../components/Modal";
 import CallToAction from "./components/CallToAction";
 import FeaturedProduct from "./components/FeaturedProduct";
 import Hero from "./components/Hero";
