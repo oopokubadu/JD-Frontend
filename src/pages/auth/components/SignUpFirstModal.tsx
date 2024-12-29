@@ -1,8 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import { Modal } from "../../../components/Modal";
-import {
-  useSendOTPMutation,
-} from "../../../services/auth-service";
+import { useSendOTPMutation } from "../../../services/auth-service";
 import toast from "react-hot-toast";
 
 const SignUpFirstModal = ({
