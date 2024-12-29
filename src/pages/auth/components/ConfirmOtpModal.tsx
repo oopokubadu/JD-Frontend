@@ -12,7 +12,7 @@ import {
 } from "../../../services/auth-service";
 import toast from "react-hot-toast";
 
-const ConfirmOtpModal = ({ open, onClose, email, openSignIn }) => {
+const ConfirmOtpModal = ({ open, onClose, email, onConfirmOtpSuccess }) => {
   const [otpValues, setOtpValues] = useState<string[]>(Array(4).fill(""));
   const [timer, setTimer] = useState(60); // Timer for 1 minute
   const [isResendDisabled, setIsResendDisabled] = useState(true);
@@ -75,7 +75,7 @@ const ConfirmOtpModal = ({ open, onClose, email, openSignIn }) => {
       toast.success("OTP verified successfully");
       console.log("OTP verified successfully:", response);
       onClose();
-      openSignIn();
+      onConfirmOtpSuccess(email);
     } catch (err: any) {
       console.error("Error verifying OTP:", err);
       toast.error(err.data.error || "Failed to verify OTP. Please try again.");
@@ -134,7 +134,7 @@ const ConfirmOtpModal = ({ open, onClose, email, openSignIn }) => {
             className="w-full inline-flex justify-center items-center text-base mt-8 gap-x-2 py-4 bg-[#3C072E] text-white rounded-full"
             disabled={isLoading}
           >
-            {isLoading ? "Verifying..." : "Done"}
+            {isLoading ? "Verifying..." : "Verify"}
           </button>
           <button
             type="button"

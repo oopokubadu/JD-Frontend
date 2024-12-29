@@ -4,10 +4,12 @@ import { MdClose } from "react-icons/md";
 import { HiMiniBars3 } from "react-icons/hi2";
 import { Logo } from "../assets";
 import { NavLink } from "react-router-dom";
-import SignUpModal from "../pages/auth/components/SignUpModal";
+import SignUpSecondModal from "../pages/auth/components/SignUpSecondModal";
 import SignInModal from "../pages/auth/components/SignInModal";
 import ConfirmOtpModal from "../pages/auth/components/ConfirmOtpModal";
 import ForgotPassword from "../pages/auth/components/ForgotPassword";
+import SignUpFirstModal from "../pages/auth/components/SignUpFirstModal";
+import MessageModal from "../pages/auth/components/MessageModal";
 
 const navigation = [
   { name: "Home", url: "/home" },
@@ -18,16 +20,19 @@ const navigation = [
 
 const Navbar = () => {
   const [token] = useState(sessionStorage.getItem("access_token"));
-  const [OpenSignUpModal, setOpenSignUpModal] = useState(false);
+  const [OpenSignUpFirstModal, setOpenSignUpFirstModal] = useState(false);
+  const [OpenSignUpSecondModal, setOpenSignUpSecondModal] = useState(false);
   const [OpenSignInModal, setOpenSignInModal] = useState(false);
+  const [OpenMessageModal, setOpenMessageModal] = useState(false);
   const [OpenConfirmOTPModal, setOpenConfirmOTPpModal] = useState(false);
   const [OpenForgotPasswordModal, setOpenForgotPasswordpModal] =
     useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [emailForOTP, setEmailForOTP] = useState("");
+  const [message, setMessage] = useState("");
 
-  const handleSignUp = () => {
-    setOpenSignUpModal(true);
+  const handleFirstSignUp = () => {
+    setOpenSignUpFirstModal(true);
   };
 
   const handleSignIn = () => {
@@ -43,7 +48,15 @@ const Navbar = () => {
     setOpenConfirmOTPpModal(true); // Open ConfirmOtpModal
   };
 
-  
+  const handleConfirmOtpSuccess = (email) => {
+    setEmailForOTP(email); // Save email for ConfirmOtpModal
+    setOpenSignUpSecondModal(true); // Open ConfirmOtpModal
+  };
+  const handleShowMessage = (content) => {
+    setMessage(content); // Save email for ConfirmOtpModal
+    setOpenMessageModal(true); // Open ConfirmOtpModal
+  };
+
   return (
     <>
       <header className="bg-[#FFFAFE] fixed inset-x-0 top-0 z-40">
@@ -106,7 +119,7 @@ const Navbar = () => {
                   Sign in
                 </button>
                 <button
-                  onClick={handleSignUp}
+                  onClick={handleFirstSignUp}
                   className="rounded-full font-custom font-light bg-[#3C072E] py-2 px-3 text-sm  text-white italic "
                 >
                   Sign up
@@ -170,14 +183,21 @@ const Navbar = () => {
           </DialogPanel>
         </Dialog>
       </header>
-      <SignUpModal
-        open={OpenSignUpModal}
-        onClose={() => setOpenSignUpModal(false)}
+      <SignUpFirstModal
+        open={OpenSignUpFirstModal}
+        onClose={() => setOpenSignUpFirstModal(false)}
         onSwitchToSignIn={() => {
-          setOpenSignUpModal(false);
+          setOpenSignUpFirstModal(false);
           setOpenSignInModal(true);
         }}
         onSignUpSuccess={handleSignUpSuccess}
+      />
+
+      <SignUpSecondModal
+        open={OpenSignUpSecondModal}
+        onClose={() => setOpenSignUpSecondModal(false)}
+        email={emailForOTP}
+        showMessage={handleShowMessage}
       />
 
       <SignInModal
@@ -185,7 +205,7 @@ const Navbar = () => {
         onClose={() => setOpenSignInModal(false)}
         onSwitchToSignUp={() => {
           setOpenSignInModal(false);
-          setOpenSignUpModal(true);
+          setOpenSignUpFirstModal(true);
         }}
         openForgotPassword={handleForgotPassword}
       />
@@ -194,7 +214,7 @@ const Navbar = () => {
         open={OpenConfirmOTPModal}
         onClose={() => setOpenConfirmOTPpModal(false)}
         email={emailForOTP}
-        openSignIn={handleSignIn}
+        onConfirmOtpSuccess={handleConfirmOtpSuccess}
       />
 
       <ForgotPassword
@@ -202,6 +222,12 @@ const Navbar = () => {
         onClose={() => setOpenForgotPasswordpModal(false)}
         email={emailForOTP}
         onForgetPasswordSuccess={handleSignUpSuccess}
+      />
+
+      <MessageModal
+        open={OpenMessageModal}
+        onClose={() => setOpenMessageModal(false)}
+        messageContent={message}
       />
     </>
   );
