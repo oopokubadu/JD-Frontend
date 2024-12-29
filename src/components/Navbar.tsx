@@ -6,6 +6,8 @@ import { Logo } from "../assets";
 import { NavLink } from "react-router-dom";
 import SignUpModal from "../pages/auth/components/SignUpModal";
 import SignInModal from "../pages/auth/components/SignInModal";
+import ConfirmOtpModal from "../pages/auth/components/ConfirmOtpModal";
+import ForgotPassword from "../pages/auth/components/ForgotPassword";
 
 const navigation = [
   { name: "Home", url: "/home" },
@@ -15,9 +17,14 @@ const navigation = [
 ];
 
 const Navbar = () => {
+  const [token] = useState(sessionStorage.getItem("access_token"));
   const [OpenSignUpModal, setOpenSignUpModal] = useState(false);
   const [OpenSignInModal, setOpenSignInModal] = useState(false);
+  const [OpenConfirmOTPModal, setOpenConfirmOTPpModal] = useState(false);
+  const [OpenForgotPasswordModal, setOpenForgotPasswordpModal] =
+    useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [emailForOTP, setEmailForOTP] = useState("");
 
   const handleSignUp = () => {
     setOpenSignUpModal(true);
@@ -26,6 +33,17 @@ const Navbar = () => {
   const handleSignIn = () => {
     setOpenSignInModal(true);
   };
+
+  const handleForgotPassword = () => {
+    setOpenForgotPasswordpModal(true);
+  };
+
+  const handleSignUpSuccess = (email) => {
+    setEmailForOTP(email); // Save email for ConfirmOtpModal
+    setOpenConfirmOTPpModal(true); // Open ConfirmOtpModal
+  };
+
+  
   return (
     <>
       <header className="bg-[#FFFAFE] fixed inset-x-0 top-0 z-40">
@@ -64,20 +82,37 @@ const Navbar = () => {
               </NavLink>
             ))}
           </div>
+
           <div className="hidden lg:flex lg:flex-1 lg:items-center lg:gap-x-2 lg:justify-end">
             <p className="text-sm p-3 font-semibold  text-[#3C072E]">Cart(2)</p>
-            <button
-              onClick={handleSignIn}
-              className="text-sm p-3 hover:font-semibold hover:bg-[#3c072e0c] text-[#3C072E]"
-            >
-              Sign in
-            </button>
-            <button
-              onClick={handleSignUp}
-              className="rounded-full font-custom font-light bg-[#3C072E] py-2 px-3 text-sm  text-white italic "
-            >
-              Sign up
-            </button>
+            {token ? (
+              <NavLink
+                to="/orders"
+                className={({ isActive }) =>
+                  `relative group text-sm p-3 hover:font-semibold hover:bg-[#3c072e0c] text-[#3C072E]  ${
+                    isActive ? "font-semibold  border-b-2 border-[#3C072E]" : ""
+                  }`
+                }
+              >
+                My account
+                <span className="absolute -bottom-0 left-0 w-0 transition-all h-0.5 bg-[#3C072E] group-hover:w-full"></span>
+              </NavLink>
+            ) : (
+              <>
+                <button
+                  onClick={handleSignIn}
+                  className="text-sm p-3 hover:font-semibold hover:bg-[#3c072e0c] text-[#3C072E]"
+                >
+                  Sign in
+                </button>
+                <button
+                  onClick={handleSignUp}
+                  className="rounded-full font-custom font-light bg-[#3C072E] py-2 px-3 text-sm  text-white italic "
+                >
+                  Sign up
+                </button>
+              </>
+            )}
           </div>
         </nav>
         <Dialog
@@ -114,12 +149,21 @@ const Navbar = () => {
                   ))}
                 </div>
                 <div className="py-6">
-                  <button
-                    onClick={handleSignIn}
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-50"
-                  >
-                    Sign in
-                  </button>
+                  {token ? (
+                    <NavLink
+                      to="/orders"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-sm font-medium hover:bg-[#3c072e0c] text-[#3C072E]"
+                    >
+                      My account
+                    </NavLink>
+                  ) : (
+                    <button
+                      onClick={handleSignIn}
+                      className="-mx-3 block rounded-lg px-3 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-50"
+                    >
+                      Sign in
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
@@ -129,11 +173,35 @@ const Navbar = () => {
       <SignUpModal
         open={OpenSignUpModal}
         onClose={() => setOpenSignUpModal(false)}
+        onSwitchToSignIn={() => {
+          setOpenSignUpModal(false);
+          setOpenSignInModal(true);
+        }}
+        onSignUpSuccess={handleSignUpSuccess}
       />
 
       <SignInModal
         open={OpenSignInModal}
         onClose={() => setOpenSignInModal(false)}
+        onSwitchToSignUp={() => {
+          setOpenSignInModal(false);
+          setOpenSignUpModal(true);
+        }}
+        openForgotPassword={handleForgotPassword}
+      />
+
+      <ConfirmOtpModal
+        open={OpenConfirmOTPModal}
+        onClose={() => setOpenConfirmOTPpModal(false)}
+        email={emailForOTP}
+        openSignIn={handleSignIn}
+      />
+
+      <ForgotPassword
+        open={OpenForgotPasswordModal}
+        onClose={() => setOpenForgotPasswordpModal(false)}
+        email={emailForOTP}
+        onForgetPasswordSuccess={handleSignUpSuccess}
       />
     </>
   );

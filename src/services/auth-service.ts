@@ -1,22 +1,53 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import queryString from "query-string";
+import { AppConstants } from "../core/app-constants";
+import { SignInResponse, SignUpResponse } from "../models/response/auth-response";
 
 export const authService = createApi({
   reducerPath: "authService",
   baseQuery: fetchBaseQuery({
-    baseUrl: process.env.REACT_APP_BASE_URL,
+    baseUrl: `${AppConstants.baseUrl}`,
     cache: "no-cache",
   }),
   tagTypes: ["Auth"],
   endpoints: (build) => ({
-    getDeliveries: build.query<any, any>({
-      query: (params) => ({
-        url: `/auth?${queryString.stringify(params)}`,
-        method: "GET",
+    signUp: build.mutation<SignUpResponse, FormData>({
+      query: (body) => ({
+        url: "/users",
+        method: "POST",
+        body: body,
       }),
-      providesTags: ["Auth"],
+      invalidatesTags: ["Auth"],
+    }),
+    signIn: build.mutation<SignInResponse, FormData>({
+      query: (body) => ({
+        url: "/signin",
+        method: "POST",
+        body: body,
+      }),
+      invalidatesTags: ["Auth"],
+    }),
+    sendOTP: build.mutation<SignUpResponse, FormData>({
+      query: (body) => ({
+        url: "/send_otp",
+        method: "POST",
+        body: body,
+      }),
+      invalidatesTags: ["Auth"],
+    }),
+    verifyOTP: build.mutation<SignUpResponse, FormData>({
+      query: (body) => ({
+        url: "/verify_otp",
+        method: "POST",
+        body: body,
+      }),
+      invalidatesTags: ["Auth"],
     }),
   }),
 });
 
-export const { useGetDeliveriesQuery } = authService;
+export const {
+  useSignUpMutation,
+  useSignInMutation,
+  useSendOTPMutation,
+  useVerifyOTPMutation,
+} = authService;
