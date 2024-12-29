@@ -74,6 +74,8 @@ const ConfirmOtpModal = ({ open, onClose, email, onConfirmOtpSuccess }) => {
       const response = await userVerify(formData).unwrap();
       toast.success("OTP verified successfully");
       console.log("OTP verified successfully:", response);
+      setOtpValues(["", "", "", ""]); // Reset OTP values
+      // Reset email if needed
       onClose();
       onConfirmOtpSuccess(email);
     } catch (err: any) {
