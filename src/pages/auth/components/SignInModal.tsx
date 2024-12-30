@@ -77,7 +77,7 @@ const SignInModal = ({
               required
             />
           </div>
-          <div className="mt-6">
+          <div className="mt-7">
             <label className="mb-2 block text-gray-700 text-xs">
               Password*
             </label>

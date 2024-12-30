@@ -10,6 +10,7 @@ import ConfirmOtpModal from "../pages/auth/components/ConfirmOtpModal";
 import ForgotPassword from "../pages/auth/components/ForgotPassword";
 import SignUpFirstModal from "../pages/auth/components/SignUpFirstModal";
 import MessageModal from "../pages/auth/components/MessageModal";
+import ResetPassword from "../pages/auth/components/ResetPassword";
 
 const navigation = [
   { name: "Home", url: "/home" },
@@ -25,7 +26,9 @@ const Navbar = () => {
   const [OpenSignInModal, setOpenSignInModal] = useState(false);
   const [OpenMessageModal, setOpenMessageModal] = useState(false);
   const [OpenConfirmOTPModal, setOpenConfirmOTPpModal] = useState(false);
-  const [OpenForgotPasswordModal, setOpenForgotPasswordpModal] =
+  const [OpenForgotPasswordModal, setOpenForgotPasswordModal] =
+    useState(false);
+  const [OpenResetPassword, setOpenResetPassword] =
     useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [emailForOTP, setEmailForOTP] = useState("");
@@ -40,7 +43,7 @@ const Navbar = () => {
   };
 
   const handleForgotPassword = () => {
-    setOpenForgotPasswordpModal(true);
+    setOpenForgotPasswordModal(true);
   };
 
   const handleSignUpSuccess = (email) => {
@@ -200,6 +203,13 @@ const Navbar = () => {
         showMessage={handleShowMessage}
       />
 
+      <ResetPassword
+        open={OpenResetPassword}
+        onClose={() => setOpenResetPassword(false)}
+        email={emailForOTP}
+        showMessage={handleShowMessage}
+      />
+
       <SignInModal
         open={OpenSignInModal}
         onClose={() => setOpenSignInModal(false)}
@@ -219,8 +229,7 @@ const Navbar = () => {
 
       <ForgotPassword
         open={OpenForgotPasswordModal}
-        onClose={() => setOpenForgotPasswordpModal(false)}
-        email={emailForOTP}
+        onClose={() => setOpenForgotPasswordModal(false)}
         onForgetPasswordSuccess={handleSignUpSuccess}
       />
 

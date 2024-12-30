@@ -3,9 +3,10 @@ import { Modal } from "../../../components/Modal";
 import { useSendOTPMutation } from "../../../services/auth-service";
 import toast from "react-hot-toast";
 
-const ForgotPassword = ({ open, onClose, onForgetPasswordSuccess }) => {
+const ResetPassword = ({ open, onClose, email, showMessage }) => {
   const initialFormData = {
     email: "",
+    password: "",
   };
 
   const [formData, setFormData] = useState(initialFormData);
@@ -34,7 +35,7 @@ const ForgotPassword = ({ open, onClose, onForgetPasswordSuccess }) => {
 
       setFormData(initialFormData);
       onClose(); // Close the modal on success
-      onForgetPasswordSuccess(formData.email);
+   
     } catch (err: any) {
       console.error("Error sending otp:", err);
       toast.error(err.data.error || "Failed to send otp. Please try again.");
@@ -43,17 +44,20 @@ const ForgotPassword = ({ open, onClose, onForgetPasswordSuccess }) => {
 
   return (
     <>
-      <Modal isOpen={open} onClose={onClose} title="Forgot password">
+      <Modal isOpen={open} onClose={onClose} title="Set your password">
         <p className="mt-4 font-custom text-[#3C072E] italic">
-          Enter your email address to receive an otp.
+          Enter a secure password so no one else can have access to your
+          account.
         </p>
 
         <form onSubmit={handleSubmit} className="mt-8">
           <div>
-            <label className="block mb-2 text-gray-700 text-xs">Email*</label>
+            <label className="block mb-2 text-gray-700 text-xs">
+              New Password*
+            </label>
             <input
-              type="email"
-              name="email"
+              type="password"
+              name="password"
               onChange={handleFormChanged}
               className="block w-full border-b border-gray-300 bg-transparent text-sm focus:outline-none"
               required
@@ -64,7 +68,7 @@ const ForgotPassword = ({ open, onClose, onForgetPasswordSuccess }) => {
             type="submit"
             className="w-full  inline-flex justify-center items-center text-base mt-8 gap-x-2 py-4 bg-[#3C072E] text-white rounded-full"
           >
-            {isLoading ? "Sending OTP..." : "Send OTP"}
+            {isLoading ? "Resetting..." : "Reset"}
           </button>
         </form>
       </Modal>
@@ -72,4 +76,4 @@ const ForgotPassword = ({ open, onClose, onForgetPasswordSuccess }) => {
   );
 };
 
-export default ForgotPassword;
+export default ResetPassword;
