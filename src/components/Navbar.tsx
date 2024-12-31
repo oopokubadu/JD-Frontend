@@ -6,12 +6,12 @@ import { Logo } from "../assets";
 import { NavLink } from "react-router-dom";
 import SignUpSecondModal from "../pages/auth/components/SignUpSecondModal";
 import SignInModal from "../pages/auth/components/SignInModal";
-import ConfirmOtpSignUpModal from "../pages/auth/components/ConfirmOtpSignUpModal";
 import ForgotPassword from "../pages/auth/components/ForgotPassword";
 import SignUpFirstModal from "../pages/auth/components/SignUpFirstModal";
 import MessageModal from "../pages/auth/components/MessageModal";
 import ResetPassword from "../pages/auth/components/ResetPassword";
-import ConfirmOTtpPasswordModal from "../pages/auth/components/ConfirmOTtpPasswordModal";
+import SignUpConfirmOTPModal from "../pages/auth/components/SignUpConfirmOTPModal";
+import PasswordConfirmOTPModal from "../pages/auth/components/PasswordConfirmOTPModal";
 
 const navigation = [
   { name: "Home", url: "/home" },
@@ -26,9 +26,9 @@ const Navbar = () => {
   const [OpenSignUpSecondModal, setOpenSignUpSecondModal] = useState(false);
   const [OpenSignInModal, setOpenSignInModal] = useState(false);
   const [OpenMessageModal, setOpenMessageModal] = useState(false);
-  const [OpenConfirmOTPSignUpModal, setOpenConfirmOTPSignUpModal] =
+  const [OpenSignUpConfirmOTPModal, setOpenSignUpConfirmOTPModal] =
     useState(false);
-  const [OpenConfirmOTPPasswordModal, setOpenConfirmOTPPasswordModal] =
+  const [OpenPasswordConfirmOTPModal, setOpenPasswordConfirmOTPModal] =
     useState(false);
   const [OpenForgotPasswordModal, setOpenForgotPasswordModal] = useState(false);
   const [OpenResetPassword, setOpenResetPassword] = useState(false);
@@ -50,12 +50,12 @@ const Navbar = () => {
 
   const handleSignUpSuccess = (email) => {
     setEmailForOTP(email);
-    setOpenConfirmOTPSignUpModal(true);
+    setOpenSignUpConfirmOTPModal(true);
   };
 
   const handleForgotPasswordSuccess = (email) => {
     setEmailForOTP(email);
-    setOpenConfirmOTPPasswordModal(true);
+    setOpenPasswordConfirmOTPModal(true);
   };
 
   const handleConfirmOtpSignUpSuccess = (email) => {
@@ -233,16 +233,16 @@ const Navbar = () => {
         openForgotPassword={handleForgotPassword}
       />
 
-      <ConfirmOtpSignUpModal
-        open={OpenConfirmOTPSignUpModal}
-        onClose={() => setOpenConfirmOTPSignUpModal(false)}
+      <SignUpConfirmOTPModal
+        open={OpenSignUpConfirmOTPModal}
+        onClose={() => setOpenSignUpConfirmOTPModal(false)}
         email={emailForOTP}
         onConfirmOtpSignUpSuccess={handleConfirmOtpSignUpSuccess}
       />
 
-      <ConfirmOTtpPasswordModal
-        open={OpenConfirmOTPPasswordModal}
-        onClose={() => setOpenConfirmOTPPasswordModal(false)}
+      <PasswordConfirmOTPModal
+        open={OpenPasswordConfirmOTPModal}
+        onClose={() => setOpenPasswordConfirmOTPModal(false)}
         email={emailForOTP}
         onConfirmOtpPasswordSuccess={handleConfirmOtpPasswordSuccess}
       />

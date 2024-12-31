@@ -12,11 +12,11 @@ import {
 } from "../../../services/auth-service";
 import toast from "react-hot-toast";
 
-const ConfirmOTtpPasswordModal = ({
+const SignUpConfirmOTPModal = ({
   open,
   onClose,
   email,
-  onConfirmOtpPasswordSuccess,
+  onConfirmOtpSignUpSuccess,
 }) => {
   const [otpValues, setOtpValues] = useState<string[]>(Array(4).fill(""));
   const [timer, setTimer] = useState(60); // Timer for 1 minute
@@ -82,7 +82,7 @@ const ConfirmOTtpPasswordModal = ({
       setOtpValues(["", "", "", ""]); // Reset OTP values
       // Reset email if needed
       onClose();
-      onConfirmOtpPasswordSuccess(email);
+      onConfirmOtpSignUpSuccess(email);
     } catch (err: any) {
       console.error("Error verifying OTP:", err);
       toast.error(err.data.error || "Failed to verify OTP. Please try again.");
@@ -98,7 +98,6 @@ const ConfirmOTtpPasswordModal = ({
     try {
       const emailToSend = new FormData();
       emailToSend.append("email", email);
-
       await sendOTP(emailToSend).unwrap();
       toast.success("OTP has been resent!");
     } catch (error) {
@@ -157,4 +156,4 @@ const ConfirmOTtpPasswordModal = ({
   );
 };
 
-export default ConfirmOTtpPasswordModal;
+export default SignUpConfirmOTPModal;
