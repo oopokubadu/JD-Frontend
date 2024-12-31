@@ -98,7 +98,6 @@ const ConfirmOtpSignUpModal = ({
     try {
       const emailToSend = new FormData();
       emailToSend.append("email", email);
-
       await sendOTP(emailToSend).unwrap();
       toast.success("OTP has been resent!");
     } catch (error) {
