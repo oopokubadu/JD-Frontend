@@ -1,39 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaMinus, FaPlus, FaStar } from "react-icons/fa6";
+import { useListAllItemsQuery } from "../../../services/product-service";
+import Loader1 from "../../../components/Loader1";
 
 const AllProduct = () => {
-  const productData = [
-    {
-      name: "StarPine flavour",
-      bgcolor: "#F9BE36",
-      price: "17.00",
-    },
-    {
-      name: "StarPine flavour",
-      bgcolor: "#FE9FD9",
-      price: "18.00",
-    },
-    {
-      name: "StarPine flavour",
-      bgcolor: "#497CD5",
-      price: "14.00",
-    },
+  const { data: response, isLoading } = useListAllItemsQuery();
+  const productItems = response;
 
-    {
-      name: "StarPine flavour",
-      bgcolor: "#EDDCFF",
-      price: "12.00",
-    },
-    {
-      name: "StarPine flavour",
-      bgcolor: "#F9BE36",
-      price: "17.00",
-    },
-  ];
+  const [quantity, setQuantity] = useState<number[]>([]);
 
-  const [quantity, setQuantity] = useState<number[]>(
-    Array(productData.length).fill(1)
-  );
+  useEffect(() => {
+    if (productItems) {
+      setQuantity(Array(productItems.length).fill(1));
+    }
+  }, [productItems]);
+
   const [visibleIndex, setVisibleIndex] = useState<number | null>(null);
 
   const handleIncrement = (index: number) => {
@@ -67,32 +48,38 @@ const AllProduct = () => {
   const handleAddToCart = (index: number) => {
     setVisibleIndex(index);
   };
+
+  if (isLoading) return <Loader1 numLoaders={6} />;
   return (
     <div className="my-14 grid md:grid-cols-2 lg:grid-cols-3 gap-10 xl:gap-20">
-      {productData.map((data, index) => (
+      {productItems?.map((data, index) => (
         <div key-={index}>
           <div
-            className="flex flex-col rounded-lg"
-            style={{ backgroundColor: `${data.bgcolor}` }}
+            className="flex flex-col rounded-lg h-[460px]"
+            style={{
+              backgroundImage: `url(${data.item_image})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
           >
             <div className="relative flex-shrink-0">
-              <img
-                className="object-contain mx-auto mix-blend-multiply"
-                src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/item-cards/10/product-1.png"
+              {/* <img
+                className="object-contain mx-auto"
+                src={data.item_image}
                 alt=""
-              />
+              /> */}
               <div className="absolute right-3 top-3">
                 <p className=" px-1.5 py-1 inline-flex gap-x-1 text-[8px] sm:text-xs font-bold tracking-wide text-[#3C072E] uppercase bg-white rounded-full">
-                  <FaStar className="text-[#F9BE36]" /> 4.3
+                  <FaStar className="text-[#F9BE36]" /> {data.item_type}
                 </p>
               </div>
             </div>
             <div className="flex flex-col items-center flex-1 p-3">
               <button
                 type="button"
-                className="inline-flex w-full items-center justify-center  py-2  text-lg italic font-custom font-bold text-[#3C072E] transition-all duration-200 bg-white rounded-md  focus:outline-none"
+                className="mt-auto inline-flex w-full items-center justify-center  py-2  text-lg italic font-custom font-bold text-[#3C072E] transition-all duration-200 bg-white rounded-md  focus:outline-none"
               >
-                {data.name}
+                {data.item_name}
               </button>
             </div>
           </div>
@@ -100,7 +87,7 @@ const AllProduct = () => {
             <div>
               <p className="text-xs text-[#3C072E] ">GHS</p>
               <p className="text-base font-custom text-[#3C072E] ">
-                {data.price}
+                {data.item_price[0].amount}.00
               </p>
             </div>
             <div className="group">
@@ -122,12 +109,12 @@ const AllProduct = () => {
                   </svg>
                 </button>
               ) : (
-                <div className="py-2 px-3 inline-block bg-white border border-gray-200 rounded-lg">
+                <div className="py-2 px-3 inline-block bg-[#FFF4F8] rounded-lg">
                   <div className="flex items-center gap-x-1.5">
                     <button
                       type="button"
                       onClick={() => handleDecrement(index)}
-                      className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                      className="size-6 inline-flex justify-center items-center gap-x-2 text-base font-medium rounded-full bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
                       disabled={quantity[index] <= 0}
                     >
                       <FaMinus className="shrink-0 size-3.5" />
@@ -141,7 +128,7 @@ const AllProduct = () => {
                     <button
                       type="button"
                       onClick={() => handleIncrement(index)}
-                      className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                      className="size-6 inline-flex justify-center items-center gap-x-2 text-base font-medium rounded-full bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
                     >
                       <FaPlus className="shrink-0 size-3.5" />
                     </button>

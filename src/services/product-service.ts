@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { AppConstants } from "../core/app-constants";
-import { SignUpResponse } from "../models/response/auth-response";
+import { ListProductResponse } from "../models/response/product-response";
 
 export const productService = createApi({
   reducerPath: "productService",
@@ -10,7 +10,7 @@ export const productService = createApi({
   }),
   tagTypes: ["Product"],
   endpoints: (build) => ({
-    listAllItems: build.query<SignUpResponse, void>({
+    listAllItems: build.query<ListProductResponse[], void>({
       query: () => ({
         url: "/items",
         method: "GET",
