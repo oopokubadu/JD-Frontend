@@ -1,6 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { AppConstants } from "../core/app-constants";
-import { SignInResponse, SignUpResponse } from "../models/response/auth-response";
+import {
+  SignInResponse,
+  SignUpResponse,
+} from "../models/response/auth-response";
 
 export const authService = createApi({
   reducerPath: "authService",
@@ -14,6 +17,14 @@ export const authService = createApi({
       query: (body) => ({
         url: "/users",
         method: "POST",
+        body: body,
+      }),
+      invalidatesTags: ["Auth"],
+    }),
+    updateUser: build.mutation<SignUpResponse, FormData>({
+      query: (body) => ({
+        url: "/user",
+        method: "PATCH",
         body: body,
       }),
       invalidatesTags: ["Auth"],
@@ -50,4 +61,5 @@ export const {
   useSignInMutation,
   useSendOTPMutation,
   useVerifyOTPMutation,
+  useUpdateUserMutation,
 } = authService;

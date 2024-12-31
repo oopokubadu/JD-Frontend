@@ -1,17 +1,17 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { Modal } from "../../../components/Modal";
-import { useSendOTPMutation } from "../../../services/auth-service";
+import { useUpdateUserMutation } from "../../../services/auth-service";
 import toast from "react-hot-toast";
 
 const ResetPassword = ({ open, onClose, email, showMessage }) => {
   const initialFormData = {
-    email: "",
+    "user email": email,
     password: "",
   };
 
   const [formData, setFormData] = useState(initialFormData);
 
-  const [userSignIn, { isLoading }] = useSendOTPMutation();
+  const [userSignIn, { isLoading }] = useUpdateUserMutation();
 
   const handleFormChanged = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -20,6 +20,10 @@ const ResetPassword = ({ open, onClose, email, showMessage }) => {
       [name]: value,
     }));
   };
+
+  useEffect(() => {
+    setFormData((prev) => ({ ...prev, "user email": email }));
+  }, [email]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,12 +34,11 @@ const ResetPassword = ({ open, onClose, email, showMessage }) => {
 
     try {
       const response = await userSignIn(formDataToSend).unwrap();
-      console.log("OTP Sent successful", response);
-      toast.success("OTP Sent");
+      console.log("Password reset complete!", response);
+      showMessage("Password reset complete!");
 
       setFormData(initialFormData);
       onClose(); // Close the modal on success
-   
     } catch (err: any) {
       console.error("Error sending otp:", err);
       toast.error(err.data.error || "Failed to send otp. Please try again.");
