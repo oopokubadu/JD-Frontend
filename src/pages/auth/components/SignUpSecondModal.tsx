@@ -3,12 +3,7 @@ import { Modal } from "../../../components/Modal";
 import { useSignUpMutation } from "../../../services/auth-service";
 import toast from "react-hot-toast";
 
-const SignUpSecondModal = ({
-  open,
-  onClose,
-  email,
-  showMessage,
-}) => {
+const SignUpSecondModal = ({ open, onClose, email, showMessage }) => {
   const initialFormData = {
     "full name": "",
     email: email,
@@ -34,7 +29,6 @@ const SignUpSecondModal = ({
     setFormData((prevFormData) => ({ ...prevFormData, email }));
   }, [email]);
 
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formDataToSend = new FormData();
@@ -50,7 +44,6 @@ const SignUpSecondModal = ({
       setFormData(initialFormData);
 
       onClose();
-    
     } catch (err: any) {
       console.error("Error signing up:", err);
       toast.error(err.data.error || "Failed to sign up. Please try again.");
@@ -59,7 +52,12 @@ const SignUpSecondModal = ({
 
   return (
     <>
-      <Modal isOpen={open} onClose={onClose} title="Wrapping up!">
+      <Modal
+        modalSize="sm:max-w-md lg:max-w-xl"
+        isOpen={open}
+        onClose={onClose}
+        title="Wrapping up!"
+      >
         <p className="mt-4 font-custom text-[#3C072E] italic">
           Enter your info and a secure password so no one else can have access
           to your account.

@@ -43,7 +43,12 @@ const ForgotPassword = ({ open, onClose, onForgetPasswordSuccess }) => {
 
   return (
     <>
-      <Modal isOpen={open} onClose={onClose} title="Forgot password">
+      <Modal
+        modalSize="sm:max-w-md lg:max-w-xl"
+        isOpen={open}
+        onClose={onClose}
+        title="Forgot password"
+      >
         <p className="mt-4 font-custom text-[#3C072E] italic">
           Enter your email address to receive an otp.
         </p>

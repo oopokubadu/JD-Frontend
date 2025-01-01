@@ -61,7 +61,12 @@ const SignInModal = ({
   };
   return (
     <>
-      <Modal isOpen={open} onClose={onClose} title="Welcome back">
+      <Modal
+        modalSize="sm:max-w-md lg:max-w-xl"
+        isOpen={open}
+        onClose={onClose}
+        title="Welcome back"
+      >
         <p className="mt-4 font-custom text-[#3C072E] italic">
           Enter your email address and password to sign in.
         </p>

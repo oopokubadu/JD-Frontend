@@ -110,7 +110,12 @@ const PasswordConfirmOTPModal = ({
 
   return (
     <>
-      <Modal isOpen={open} onClose={onClose} title="Enter OTP">
+      <Modal
+        modalSize="sm:max-w-md lg:max-w-xl"
+        isOpen={open}
+        onClose={onClose}
+        title="Enter OTP"
+      >
         <p className="mt-4 font-custom text-[#3C072E] italic">
           A One time PIN has been sent to {email}. Enter it below to continue.
         </p>

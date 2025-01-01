@@ -47,7 +47,12 @@ const ResetPassword = ({ open, onClose, email, showMessage }) => {
 
   return (
     <>
-      <Modal isOpen={open} onClose={onClose} title="Set your password">
+      <Modal
+        modalSize="sm:max-w-md lg:max-w-xl"
+        isOpen={open}
+        onClose={onClose}
+        title="Set your password"
+      >
         <p className="mt-4 font-custom text-[#3C072E] italic">
           Enter a secure password so no one else can have access to your
           account.

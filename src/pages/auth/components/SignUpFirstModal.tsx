@@ -57,7 +57,12 @@ const SignUpFirstModal = ({
 
   return (
     <>
-      <Modal isOpen={open} onClose={onClose} title="Welcome to JD!">
+      <Modal
+        modalSize="sm:max-w-md lg:max-w-xl"
+        isOpen={open}
+        onClose={onClose}
+        title="Welcome to JD!"
+      >
         <p className="mt-4 font-custom text-[#3C072E] italic">
           Join us to make your order seamless!
         </p>

@@ -14,6 +14,7 @@ interface ModalProps {
   title?: string;
   children?: React.ReactNode;
   footer?: React.ReactNode;
+  modalSize: React.ReactNode;
 }
 export const Modal = ({
   isOpen,
@@ -21,6 +22,7 @@ export const Modal = ({
   title,
   children,
   footer,
+  modalSize,
 }: ModalProps) => {
   return (
     <>
@@ -48,7 +50,9 @@ export const Modal = ({
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <DialogPanel className="relative z-50 inline-flex w-full transform flex-col overflow-hidden rounded-xl bg-white shadow-2xl transition-all lg:p-4 sm:max-w-md lg:max-w-xl sm:align-middle">
+              <DialogPanel
+                className={`relative z-50 inline-flex w-full transform flex-col overflow-hidden rounded-xl bg-white shadow-2xl transition-all lg:p-4 ${modalSize} sm:align-middle`}
+              >
                 <div className="absolute top-4 right-5 lg:top-8 lg:right-8">
                   <button
                     type="button"
