@@ -60,11 +60,12 @@ const AllProduct = () => {
   if (isLoading) return <Loader1 numLoaders={6} />;
   return (
     <>
-      <div className="my-14 grid md:grid-cols-2 lg:grid-cols-3 gap-10 xl:gap-20">
+      <div className="my-14 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7 xl:gap-14">
         {productItems?.map((data, index) => (
           <div key={index}>
             <div
-              className="flex flex-col rounded-lg h-[460px]"
+              onClick={() => handleViewDetails(data)}
+              className="flex flex-col rounded-lg cursor-pointer h-[460px]"
               style={{
                 backgroundImage: `url(${data.item_image})`,
                 backgroundSize: "cover",
@@ -85,7 +86,6 @@ const AllProduct = () => {
               </div>
               <div className="flex flex-col items-center flex-1 p-3">
                 <button
-                  onClick={() => handleViewDetails(data)}
                   type="button"
                   className="mt-auto inline-flex w-full items-center justify-center  py-2  text-lg italic font-custom font-bold text-[#3C072E] transition-all duration-200 bg-white rounded-md  focus:outline-none"
                 >

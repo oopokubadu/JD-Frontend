@@ -124,7 +124,10 @@ const FeaturedProduct = () => {
           >
             {productItems?.map((data, index) => (
               <SwiperSlide key={index}>
-                <div key={index}>
+                <div
+                  onClick={() => handleViewDetails(data)}
+                  className="cursor-pointer"
+                >
                   <div
                     className="flex flex-col rounded-lg h-[460px]"
                     style={{
@@ -134,11 +137,6 @@ const FeaturedProduct = () => {
                     }}
                   >
                     <div className="relative flex-shrink-0">
-                      {/* <img
-                          className="object-contain mx-auto"
-                          src={data.item_image}
-                          alt=""
-                        /> */}
                       <div className="absolute right-3 top-3">
                         <p className=" px-1.5 py-1 inline-flex gap-x-1 text-[8px] sm:text-xs font-bold tracking-wide text-[#3C072E] uppercase bg-white rounded-full">
                           <FaStar className="text-[#F9BE36]" /> {data.item_type}
