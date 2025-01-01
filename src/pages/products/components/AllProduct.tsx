@@ -62,7 +62,7 @@ const AllProduct = () => {
     <>
       <div className="my-14 grid md:grid-cols-2 lg:grid-cols-3 gap-10 xl:gap-20">
         {productItems?.map((data, index) => (
-          <div key-={index}>
+          <div key={index}>
             <div
               className="flex flex-col rounded-lg h-[460px]"
               style={{
@@ -96,7 +96,7 @@ const AllProduct = () => {
             <div className="flex mt-2 justify-between">
               <div>
                 <p className="text-xs text-[#3C072E] ">GHS</p>
-                <p className="text-base font-custom text-[#3C072E] ">
+                <p className="text-lg font-custom text-[#3C072E] ">
                   {data.item_price[0].amount}.00
                 </p>
               </div>

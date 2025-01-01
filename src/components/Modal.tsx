@@ -51,7 +51,7 @@ export const Modal = ({
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
               <DialogPanel
-                className={`relative z-50 inline-flex w-full transform flex-col overflow-hidden rounded-xl bg-white shadow-2xl transition-all lg:p-4 ${modalSize} sm:align-middle`}
+                className={`relative z-50 inline-flex w-full transform flex-col overflow-hidden rounded-lg bg-white shadow-2xl transition-all lg:p-4 ${modalSize} sm:align-middle`}
               >
                 <div className="absolute top-4 right-5 lg:top-8 lg:right-8">
                   <button

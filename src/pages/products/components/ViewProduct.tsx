@@ -5,6 +5,7 @@ import { FaMinus, FaPlus, FaStar } from "react-icons/fa6";
 const ViewProduct = ({ open, onClose, product }) => {
   const [quantity, setQuantity] = useState(1);
   const [showQuantity, setShowQuantity] = useState(false);
+  const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
 
   const handleIncrement = () => setQuantity((prev) => prev + 1);
   const handleDecrement = () => setQuantity((prev) => Math.max(0, prev - 1));
@@ -15,6 +16,10 @@ const ViewProduct = ({ open, onClose, product }) => {
 
   const handleAddToCart = () => {
     setShowQuantity(true); // Show the quantity div
+  };
+
+  const handleSizeSelection = (index: number) => {
+    setSelectedSizeIndex(index);
   };
 
   return (
@@ -38,17 +43,13 @@ const ViewProduct = ({ open, onClose, product }) => {
           }}
         >
           <div className="relative flex-shrink-0">
-            {/* <img
-                        className="object-contain mx-auto"
-                        src={product.item_image}
-                        alt=""
-                      /> */}
             <div className="absolute right-3 top-3">
               <p className=" px-1.5 py-1 inline-flex gap-x-1 text-[8px] sm:text-xs font-bold tracking-wide text-[#3C072E] uppercase bg-white rounded-full">
                 <FaStar className="text-[#F9BE36]" /> {product?.item_type}
               </p>
             </div>
           </div>
+
           <div className="flex flex-col items-center flex-1 p-3">
             <button
               type="button"
@@ -58,11 +59,24 @@ const ViewProduct = ({ open, onClose, product }) => {
             </button>
           </div>
         </div>
+        <div className="flex justify-between flex-wrap gap-5 my-3">
+          {product?.item_price.map((data, index) => (
+            <button
+              key={index}
+              onClick={() => handleSizeSelection(index)}
+              className={`text-sm font-semibold text-[#3C072E] bg-[#FFF4F8] rounded-lg inline-flex items-center px-3 py-2 ${
+                selectedSizeIndex === index ? "border-2 border-[#3C072E]" : ""
+              }`}
+            >
+              {data.size}
+            </button>
+          ))}
+        </div>
         <div className="flex mt-2 justify-between">
           <div>
             <p className="text-xs text-[#3C072E] ">GHS</p>
-            <p className="text-base font-custom text-[#3C072E] ">
-              {product?.item_price[0].amount}.00
+            <p className="text-lg font-custom text-[#3C072E] ">
+              {product?.item_price[selectedSizeIndex]?.amount}.00
             </p>
           </div>
           <div className="group">
