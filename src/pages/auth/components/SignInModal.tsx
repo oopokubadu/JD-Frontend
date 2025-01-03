@@ -43,7 +43,7 @@ const SignInModal = ({
       onClose(); // Close the modal on success
       setTimeout(() => {
         window.location.reload();
-      }, 2000);
+      }, 1000);
     } catch (err: any) {
       console.error("Error signing up:", err);
       toast.error(err.data.error || "Failed to sign up. Please try again.");

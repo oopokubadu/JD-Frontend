@@ -1,9 +1,9 @@
 import { Dialog, DialogPanel } from "@headlessui/react";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { MdClose } from "react-icons/md";
 import { HiMiniBars3 } from "react-icons/hi2";
 import { Logo } from "../assets";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import SignUpSecondModal from "../pages/auth/components/SignUpSecondModal";
 import SignInModal from "../pages/auth/components/SignInModal";
 import ForgotPassword from "../pages/auth/components/ForgotPassword";
@@ -12,6 +12,7 @@ import MessageModal from "../pages/auth/components/MessageModal";
 import ResetPassword from "../pages/auth/components/ResetPassword";
 import SignUpConfirmOTPModal from "../pages/auth/components/SignUpConfirmOTPModal";
 import PasswordConfirmOTPModal from "../pages/auth/components/PasswordConfirmOTPModal";
+import AuthContext from "../pages/auth/utils/AuthContext";
 
 const navigation = [
   { name: "Home", url: "/home" },
@@ -21,6 +22,10 @@ const navigation = [
 ];
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const { logout } = useContext(AuthContext);
+
   const [token] = useState(sessionStorage.getItem("access_token"));
   const [OpenSignUpFirstModal, setOpenSignUpFirstModal] = useState(false);
   const [OpenSignUpSecondModal, setOpenSignUpSecondModal] = useState(false);
@@ -73,6 +78,14 @@ const Navbar = () => {
     setOpenMessageModal(true);
   };
 
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  };
+
   return (
     <>
       <header className="bg-[#FFFAFE] fixed inset-x-0 top-0 z-40">
@@ -113,19 +126,34 @@ const Navbar = () => {
           </div>
 
           <div className="hidden lg:flex lg:flex-1 lg:items-center lg:gap-x-2 lg:justify-end">
-            <p className="text-sm p-3 font-semibold  text-[#3C072E]">Cart(2)</p>
+            <NavLink
+              to="/cart"
+              className="text-sm p-3 font-semibold  text-[#3C072E]"
+            >
+              Cart
+            </NavLink>
             {token ? (
-              <NavLink
-                to="/orders"
-                className={({ isActive }) =>
-                  `relative group text-sm p-3 hover:font-semibold hover:bg-[#3c072e0c] text-[#3C072E]  ${
-                    isActive ? "font-semibold  border-b-2 border-[#3C072E]" : ""
-                  }`
-                }
-              >
-                My account
-                <span className="absolute -bottom-0 left-0 w-0 transition-all h-0.5 bg-[#3C072E] group-hover:w-full"></span>
-              </NavLink>
+              <div className="flex gap-x-2">
+                <NavLink
+                  to="/orders"
+                  className={({ isActive }) =>
+                    `relative group text-sm p-3 hover:font-semibold hover:bg-[#3c072e0c] text-[#3C072E]  ${
+                      isActive
+                        ? "font-semibold  border-b-2 border-[#3C072E]"
+                        : ""
+                    }`
+                  }
+                >
+                  My account
+                  <span className="absolute -bottom-0 left-0 w-0 transition-all h-0.5 bg-[#3C072E] group-hover:w-full"></span>
+                </NavLink>
+                <button
+                  onClick={handleLogout}
+                  className="rounded-full font-custom font-light bg-[#3C072E] py-2 px-3 text-sm  text-white italic "
+                >
+                  Log out
+                </button>
+              </div>
             ) : (
               <>
                 <button
@@ -179,12 +207,20 @@ const Navbar = () => {
                 </div>
                 <div className="py-6">
                   {token ? (
-                    <NavLink
-                      to="/orders"
-                      className="-mx-3 block rounded-lg px-3 py-2 text-sm font-medium hover:bg-[#3c072e0c] text-[#3C072E]"
-                    >
-                      My account
-                    </NavLink>
+                    <>
+                      <NavLink
+                        to="/orders"
+                        className="-mx-3 block rounded-lg px-3 py-2 text-sm font-medium hover:bg-[#3c072e0c] text-[#3C072E]"
+                      >
+                        My account
+                      </NavLink>
+                      <button
+                        onClick={handleLogout}
+                        className="-mx-3 block rounded-lg px-3 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-50"
+                      >
+                        Log Out
+                      </button>
+                    </>
                   ) : (
                     <button
                       onClick={handleSignIn}

@@ -124,12 +124,10 @@ const FeaturedProduct = () => {
           >
             {productItems?.map((data, index) => (
               <SwiperSlide key={index}>
-                <div
-                  onClick={() => handleViewDetails(data)}
-                  className="cursor-pointer"
-                >
+                <div>
                   <div
-                    className="flex flex-col rounded-lg h-[460px]"
+                    onClick={() => handleViewDetails(data)}
+                    className="flex flex-col rounded-lg h-[460px] cursor-pointer"
                     style={{
                       backgroundImage: `url(${data.item_image})`,
                       backgroundSize: "cover",
