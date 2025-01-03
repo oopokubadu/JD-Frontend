@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./core/store";
 import { AuthProvider } from "./pages/auth/utils/AuthContext";
+import { ModalProvider } from "./utils/ModalContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -16,7 +17,9 @@ root.render(
     <Provider store={store}>
       <AuthProvider>
         <BrowserRouter>
-          <App />
+          <ModalProvider>
+            <App />
+          </ModalProvider>
         </BrowserRouter>
       </AuthProvider>
     </Provider>

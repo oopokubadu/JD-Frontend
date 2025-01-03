@@ -13,6 +13,7 @@ import ResetPassword from "../pages/auth/components/ResetPassword";
 import SignUpConfirmOTPModal from "../pages/auth/components/SignUpConfirmOTPModal";
 import PasswordConfirmOTPModal from "../pages/auth/components/PasswordConfirmOTPModal";
 import AuthContext from "../pages/auth/utils/AuthContext";
+import { useModalContext } from "../utils/ModalContext";
 
 const navigation = [
   { name: "Home", url: "/home" },
@@ -27,56 +28,36 @@ const Navbar = () => {
   const { logout } = useContext(AuthContext);
 
   const [token] = useState(sessionStorage.getItem("access_token"));
-  const [OpenSignUpFirstModal, setOpenSignUpFirstModal] = useState(false);
-  const [OpenSignUpSecondModal, setOpenSignUpSecondModal] = useState(false);
-  const [OpenSignInModal, setOpenSignInModal] = useState(false);
-  const [OpenMessageModal, setOpenMessageModal] = useState(false);
-  const [OpenSignUpConfirmOTPModal, setOpenSignUpConfirmOTPModal] =
-    useState(false);
-  const [OpenPasswordConfirmOTPModal, setOpenPasswordConfirmOTPModal] =
-    useState(false);
-  const [OpenForgotPasswordModal, setOpenForgotPasswordModal] = useState(false);
-  const [OpenResetPassword, setOpenResetPassword] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [emailForOTP, setEmailForOTP] = useState("");
-  const [message, setMessage] = useState("");
 
-  const handleFirstSignUp = () => {
-    setOpenSignUpFirstModal(true);
-  };
-
-  const handleSignIn = () => {
-    setOpenSignInModal(true);
-  };
-
-  const handleForgotPassword = () => {
-    setOpenForgotPasswordModal(true);
-  };
-
-  const handleSignUpSuccess = (email) => {
-    setEmailForOTP(email);
-    setOpenSignUpConfirmOTPModal(true);
-  };
-
-  const handleForgotPasswordSuccess = (email) => {
-    setEmailForOTP(email);
-    setOpenPasswordConfirmOTPModal(true);
-  };
-
-  const handleConfirmOtpSignUpSuccess = (email) => {
-    setEmailForOTP(email);
-    setOpenSignUpSecondModal(true);
-  };
-
-  const handleConfirmOtpPasswordSuccess = (email) => {
-    setEmailForOTP(email);
-    setOpenResetPassword(true);
-  };
-
-  const handleShowMessage = (content) => {
-    setMessage(content);
-    setOpenMessageModal(true);
-  };
+  const {
+    OpenSignUpFirstModal,
+    setOpenSignUpFirstModal,
+    OpenSignUpSecondModal,
+    setOpenSignUpSecondModal,
+    OpenSignInModal,
+    setOpenSignInModal,
+    OpenMessageModal,
+    setOpenMessageModal,
+    OpenSignUpConfirmOTPModal,
+    setOpenSignUpConfirmOTPModal,
+    OpenPasswordConfirmOTPModal,
+    setOpenPasswordConfirmOTPModal,
+    OpenForgotPasswordModal,
+    setOpenForgotPasswordModal,
+    OpenResetPassword,
+    setOpenResetPassword,
+    emailForOTP,
+    message,
+    handleFirstSignUp,
+    handleSignIn,
+    handleSignUpSuccess,
+    handleForgotPassword,
+    handleForgotPasswordSuccess,
+    handleConfirmOtpSignUpSuccess,
+    handleConfirmOtpPasswordSuccess,
+    handleShowMessage,
+  } = useModalContext();
 
   const handleLogout = () => {
     logout();

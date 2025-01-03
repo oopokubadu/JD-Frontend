@@ -37,6 +37,7 @@ const SignInModal = ({
       const response = await userSignIn(formDataToSend).unwrap();
       console.log("SignIn successful", response);
       sessionStorage.setItem("access_token", response.access_token);
+      sessionStorage.setItem("user_id", response.user_id);
       toast.success("Sign In Successful");
 
       setFormData(initialFormData);

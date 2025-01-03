@@ -5,4 +5,5 @@ export interface SignUpResponse {
 
 export interface SignInResponse {
   access_token: string;
+  user_id: string;
 }
